@@ -15,15 +15,15 @@ const Navbar = () => {
         <>
             <NavLink to="/" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Home</NavLink>
 
-            <NavLink to="/about" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>About</NavLink>
+            <NavLink to="/about" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>About Us</NavLink>
 
-            <NavLink to="/skills" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Skills</NavLink>
+            <NavLink to="/events" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Events</NavLink>
 
-            <NavLink to="/projects" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Projects</NavLink>
+            <NavLink to="/services" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Services</NavLink>
 
-            <NavLink to="/blogs" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Blogs</NavLink>
+            <NavLink to="/reviews" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Reviews</NavLink>
             
-            <NavLink to="/contactMe" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Contact Me</NavLink>
+            <NavLink to="/contactUs" className={({ isActive }) => isActive ? "text-base-content font-bold" : "font-bold"}>Contact Us</NavLink>
         </>
     );
 

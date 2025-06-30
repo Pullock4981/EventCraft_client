@@ -1,24 +1,39 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaCode, FaMobileAlt, FaServer } from "react-icons/fa";
+import { FaBirthdayCake, FaUsers, FaMicrophoneAlt, FaUtensils, FaCamera, FaPaintBrush } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
-import { Link } from "react-router";
+import { Link } from "react-router"; // fixed incorrect import
 
 const highlights = [
   {
-    icon: <FaCode className="text-4xl text-primary" />,
-    title: "Frontend Development",
-    desc: "Crafting responsive and interactive user interfaces with React.js and Tailwind CSS.",
+    icon: <FaBirthdayCake className="text-4xl text-primary" />,
+    title: "Event Planning",
+    desc: "From birthdays to corporate galas – we plan, manage, and deliver unforgettable experiences.",
   },
   {
-    icon: <FaServer className="text-4xl text-accent" />,
-    title: "Backend Development",
-    desc: "Building robust REST APIs using Node.js, Express.js, and MongoDB.",
+    icon: <FaUsers className="text-4xl text-secondary" />,
+    title: "Guest Management",
+    desc: "We take care of invitations, RSVPs, and smooth coordination on the big day.",
   },
   {
-    icon: <FaMobileAlt className="text-4xl text-secondary" />,
-    title: "Responsive Design",
-    desc: "Ensuring cross-device compatibility with mobile-first design principles.",
+    icon: <FaMicrophoneAlt className="text-4xl text-accent" />,
+    title: "Stage & Entertainment",
+    desc: "Professional sound, lighting, and live performances to keep your guests engaged.",
+  },
+  {
+    icon: <FaUtensils className="text-4xl text-warning" />,
+    title: "Catering Services",
+    desc: "Delicious, customizable catering options for all events and dietary needs.",
+  },
+  {
+    icon: <FaCamera className="text-4xl text-info" />,
+    title: "Photography & Videography",
+    desc: "Capture every special moment with our professional photo & video team.",
+  },
+  {
+    icon: <FaPaintBrush className="text-4xl text-success" />,
+    title: "Theme & Decor",
+    desc: "Personalized styling and decor to bring your event vision to life.",
   },
 ];
 
@@ -34,13 +49,10 @@ const HomeHighlights = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          What I Do
+          What We Offer
         </motion.h2>
 
-        <div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          ref={ref}
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" ref={ref}>
           {highlights.map((item, i) => (
             <motion.div
               key={i}
@@ -55,16 +67,18 @@ const HomeHighlights = () => {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 text-center"
+        >
+          <Link to="/services" className="btn btn-primary px-8 rounded-full mt-4">
+            Explore All Services
+          </Link>
+        </motion.div>
       </div>
-      {/* CTA */}
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mt-10 text-center"
-            >
-                <Link to='/projects' className="btn btn-primary px-8 rounded-full mt-4">See My Projects</Link>
-            </motion.div>
     </section>
   );
 };

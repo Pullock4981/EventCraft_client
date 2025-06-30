@@ -1,104 +1,57 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { HiArrowNarrowRight } from "react-icons/hi";
-import { FaGithub, FaLinkedin, FaFacebookSquare, FaDownload } from "react-icons/fa";
-import { Typewriter } from "react-simple-typewriter";
-import { Link } from "react-router";
+import { Fade } from "react-awesome-reveal";
+import { FaCalendarCheck, FaPhoneAlt } from "react-icons/fa";
+import ServicesMarquee from "./ServicesMarquee";
 
 const Banner = () => {
   return (
-    <section className="relative py-20 px-4 md:px-16 overflow-hidden bg-gradient-to-br from-base-200 to-base-100 text-base-content rounded-2xl" id="home">
-      {/* Animated Background Blur */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 opacity-30 bg-gradient-to-tr from-secondary via-primary to-accent animate-pulse blur-2xl" />
-
-      <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
-        {/* Text */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center lg:text-left flex-1"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Faysal Ahmed</h1>
-
-          <h2 className="text-2xl font-medium mb-4">
-            <span className="text-secondary-content">I'm a </span>
-            <span className="text-secondary font-bold">
-              <Typewriter
-                words={["MERN Stack Developer", "React Enthusiast", "Problem Solver"]}
-                loop={0}
-                cursor
-                cursorStyle="|"
-                typeSpeed={70}
-                deleteSpeed={50}
-                delaySpeed={1500}
-              />
-            </span>
-          </h2>
-
-          <p className="mb-6 max-w-xl text-base-content/90 mx-auto lg:mx-0">
-            Passionate about building full-stack applications using React, Node.js, Firebase, and MongoDB. I love solving real-world problems with clean and efficient code.
+    <div className="bg-base-200 rounded-2xl">
+      <div className="relative z-10 w-full max-w-6xl p-6 md:p-10 text-neutral-content text-center">
+        <Fade direction="down" triggerOnce>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 bg-clip-text text-transparent">
+            Welcome to EventCraft
+          </h1>
+          <p className="text-lg md:text-xl mb-6">
+            Your trusted partner in crafting unforgettable events – from intimate gatherings to grand celebrations.
           </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-4">
-            {/* <a
-              href="#contact"
-              className="btn btn-primary rounded-full px-6 flex items-center gap-2"
-            >
-              Hire Me <HiArrowNarrowRight className="text-xl" />
-            </a> */}
-            {/* <Link to='/projects'
-              href="#projects"
-              className="btn btn-outline btn-primary rounded-full px-6"
-            >
-              View Projects
-            </Link> */}
-            <Link to='https://github.com/faysalahmed915'
-            target="_blank"
-              className="btn btn-outline btn-primary rounded-full px-6"
-            >
-              <FaDownload /> Resume
-            </Link>
-            {/* <a
-              href="https://github.com/faysalahmed915"
-              target="_blank"
-              download
-              className="btn btn-outline rounded-full px-6 flex items-center gap-2"
-            >
-              <FaDownload /> Resume
-            </a> */}
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            <button className="btn btn-primary text-white">
+              <FaCalendarCheck className="mr-2" /> Book an Event
+            </button>
+            <button className="btn btn-outline btn-accent">
+              <FaPhoneAlt className="mr-2" /> Contact Us
+            </button>
           </div>
+        </Fade>
 
-          {/* Social Icons */}
-          <div className="flex gap-5 mt-6 justify-center lg:justify-start text-2xl">
-            <a href="https://github.com/faysaldev" target="_blank" rel="noreferrer">
-              <FaGithub className="hover:text-white" />
-            </a>
-            <a href="https://linkedin.com/in/faysaldev" target="_blank" rel="noreferrer">
-              <FaLinkedin className="hover:text-white" />
-            </a>
-            <a href="https://facebook.com/faysaldev" target="_blank" rel="noreferrer">
-              <FaFacebookSquare className="hover:text-white" />
-            </a>
+        <Fade direction="up" triggerOnce>
+          <div className="bg-base-100 bg-opacity-90 rounded-xl p-6 md:p-8 text-base-content text-left max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center border-b-2 border-purple-400 pb-2">
+              Why Choose EventCraft?
+            </h2>
+            <ul className="list-disc list-inside space-y-3 text-lg">
+              <li className="hover:text-purple-600 transition-colors duration-300 cursor-pointer">
+                Tailor-made events to match your unique vision
+              </li>
+              <li className="hover:text-purple-600 transition-colors duration-300 cursor-pointer">
+                Full-service planning: Venue, Decor, Catering, Entertainment & More
+              </li>
+              <li className="hover:text-purple-600 transition-colors duration-300 cursor-pointer">
+                Experienced team with 500+ successful events
+              </li>
+              <li className="hover:text-purple-600 transition-colors duration-300 cursor-pointer">
+                Seamless experience from concept to celebration
+              </li>
+            </ul>
           </div>
-        </motion.div>
-
-        {/* Image */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex-1 flex justify-center"
-        >
-          <img
-            src="https://i.ibb.co/HTYhNzkv/Whats-App-I561594561.jpg"
-            alt="Faysal Ahmed"
-            className="rounded-full shadow-2xl w-72 h-72 object-cover border-4 border-white"
-          />
-        </motion.div>
+        </Fade>
       </div>
-    </section>
+
+      <section className="shadow-md px-2 md:px-4 lg:px-8 pb-4">
+        <ServicesMarquee></ServicesMarquee>
+      </section>
+
+    </div>
   );
 };
 

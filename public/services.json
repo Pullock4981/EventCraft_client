@@ -1,0 +1,53 @@
+[
+  {
+    "id": "service01",
+    "title": "Wedding Planning",
+    "description": "Elegant, personalized wedding experiences with end-to-end planning and management.",
+    "features": [
+      "Venue booking & decoration",
+      "Guest list and RSVP tracking",
+      "Vendor coordination",
+      "Themed styling",
+      "Bridal support & logistics"
+    ],
+    "technologies": ["Decoration", "Coordination", "Catering", "Photography"],
+    "image": "https://i.ibb.co/BcSkPSn/wedding-event.jpg",
+    "live": "#",
+    "githubC": "#",
+    "githubS": "#"
+  },
+  {
+    "id": "service02",
+    "title": "Corporate Events",
+    "description": "Professional corporate event execution with branding, scheduling, and guest handling.",
+    "features": [
+      "Conference & seminar setup",
+      "Stage & audio visuals",
+      "Corporate catering",
+      "Team building activities",
+      "Attendance management"
+    ],
+    "technologies": ["Event App", "Live Stream", "Guest Management", "Branding"],
+    "image": "https://i.ibb.co/JHdpgcs/corporate-event.jpg",
+    "live": "#",
+    "githubC": "#",
+    "githubS": "#"
+  },
+  {
+    "id": "service03",
+    "title": "Birthday Parties",
+    "description": "Colorful birthday parties with customizable themes, fun games, and engaging decor.",
+    "features": [
+      "Custom themes (Superheroes, Princesses, etc.)",
+      "Kids games & entertainment",
+      "Cakes & catering",
+      "Decor and photo booth",
+      "Live countdown & hosting"
+    ],
+    "technologies": ["Party Decor", "Entertainment", "Balloon Art", "Photography"],
+    "image": "https://i.ibb.co/ZL5tMTm/birthday-party.jpg",
+    "live": "#",
+    "githubC": "#",
+    "githubS": "#"
+  }
+]

@@ -4,11 +4,11 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import FAQ from "../Pages/FAQ";
 import Home from "../Pages/Home/Home";
 import Blogs from "../Pages/Blogs/Blogs";
-import Projects from "../Pages/Projects/Projects";
-import ProjectDetails from "../Pages/Projects/ProjectDetails.jsx";
-import Skills from "../Pages/Skills/Skills.jsx";
+import Projects from "../Pages/Services/Services.jsx";
+import ProjectDetails from "../Pages/Services/ProjectDetails.jsx";
 import About from "../Pages/About/About.jsx";
 import ContactMe from "../Pages/Contact/ContactMe.jsx";
+import Events from "../Pages/Events/Events.jsx";
 
 
 export const Router = createBrowserRouter([
@@ -32,23 +32,23 @@ export const Router = createBrowserRouter([
                 Component: About,
             },
             {
-                path: '/skills',
-                Component: Skills,
+                path: '/events',
+                Component: Events,
             },
             {
-                path: '/projects',
+                path: '/services',
                 Component: Projects,
             },
             {
-                path: '/blogs',
+                path: '/reviews',
                 Component: Blogs,
             },
             {
-                path: "/projectDetails/:id",
+                path: "/serviceDetails/:id",
                 Component: ProjectDetails,
             },
             {
-                path: "/contactMe",
+                path: "/contactUs",
                 Component: ContactMe,
             }
         ]

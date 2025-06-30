@@ -1,5 +1,5 @@
 import React from 'react';
-import SkillsMarquee from './HomeComponents/SkillsMarquee';
+import SkillsMarquee from './HomeComponents/ServicesMarquee';
 import Banner from './HomeComponents/Banner';
 import HomeHighlights from './HomeComponents/HomeHighlights';
 
@@ -9,11 +9,11 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
 
             {/* <h1>home</h1> */}
-            <section className="bg-base-300 shadow-md px-2 md:px-4 lg:px-8 pt-12">
+            <section className="bg-base-300 shadow-md px-2 md:px-4 lg:px-8 py-2">
                 <Banner></Banner>
             </section>
 
-            <section className="bg-base-300 shadow-md px-2 md:px-4 lg:px-8 py-12">
+            <section className="bg-base-300 shadow-md px-2 md:px-4 lg:px-8 py-2">
                 <HomeHighlights></HomeHighlights>
             </section>
 

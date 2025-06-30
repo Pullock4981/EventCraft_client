@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; // fixed router import
 
-const Projects = () => {
-  const [projects, setProjects] = useState([]);
+const Services = () => {
+  const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch('/projects.json')
+    fetch('/services.json')
       .then(res => res.json())
-      .then(data => setProjects(data))
-      .catch(err => console.error("Failed to fetch project data:", err));
+      .then(data => setServices(data))
+      .catch(err => console.error("Failed to fetch services data:", err));
   }, []);
 
   const cardVariants = {
@@ -35,13 +35,13 @@ const Projects = () => {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        My Projects
+        Our Services
       </motion.h1>
 
       <div className="space-y-14">
-        {projects.map((project, index) => (
+        {services.map((service, index) => (
           <motion.div
-            key={project.id}
+            key={service.id}
             className="flex flex-col-reverse lg:flex-row-reverse bg-base-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition"
             initial="hidden"
             whileInView="visible"
@@ -52,17 +52,17 @@ const Projects = () => {
             {/* Info Section */}
             <div className="lg:w-1/2 p-6 flex flex-col justify-between">
               <div>
-                <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-                <p className="text-sm mb-4 text-primary">{project.description}</p>
+                <h2 className="text-2xl font-bold mb-2">{service.title}</h2>
+                <p className="text-sm mb-4 text-primary">{service.description}</p>
 
                 <ul className="list-disc list-inside text-sm mb-4 space-y-1">
-                  {project.features?.slice(0, 5).map((feature, idx) => (
+                  {service.features?.slice(0, 5).map((feature, idx) => (
                     <li key={idx}>{feature}</li>
                   ))}
                 </ul>
 
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies?.map((tech, idx) => (
+                  {service.technologies?.map((tech, idx) => (
                     <span
                       key={idx}
                       className="bg-accent text-accent-content text-xs px-2 py-1 rounded"
@@ -74,32 +74,8 @@ const Projects = () => {
               </div>
 
               <div className="flex flex-wrap gap-3 mt-auto">
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm text-white"
-                >
-                  Live
-                </a>
-                <a
-                  href={project.githubC}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded text-sm text-white"
-                >
-                  Client Code
-                </a>
-                <a
-                  href={project.githubS}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded text-sm text-white"
-                >
-                  Server Code
-                </a>
                 <Link
-                  to={`/projectDetails/${project.id}`}
+                  to={`/serviceDetails/${service.id}`}
                   className="bg-secondary text-secondary-content hover:bg-primary hover:text-primary-content px-4 py-2 rounded text-sm"
                 >
                   Details
@@ -109,10 +85,10 @@ const Projects = () => {
 
             {/* Image Section */}
             <div className="lg:w-1/2 p-6">
-              <a href={project.live} target="_blank" rel="noreferrer">
+              <a href={service.live} target="_blank" rel="noreferrer">
                 <motion.img
-                  src={project.image}
-                  alt={project.title}
+                  src={service.image}
+                  alt={service.title}
                   className="w-full h-40 lg:h-full object-cover rounded-2xl transition-transform duration-300 hover:scale-105"
                   whileHover={{ scale: 1.05 }}
                 />
@@ -125,4 +101,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Services;

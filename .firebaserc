@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "faysal-ahmed-portfolio"
-  }
+    "default": "faysal-ahmed-portfolio",
+    "dist": "happy-event-3c50b"
+  },
+  "targets": {},
+  "etags": {}
 }
