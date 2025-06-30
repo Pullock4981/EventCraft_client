@@ -1,0 +1,24 @@
+[
+  {
+    "id": "e1",
+    "title": "Tech Meetup 2025",
+    "name": "Faysal Ahmed",
+    "date": "2025-06-29",
+    "time": "15:30",
+    "location": "Dhaka Convention Center",
+    "description": "Explore new technologies, meet industry leaders, and network with fellow tech enthusiasts.",
+    "attendeeCount": 10,
+    "joinedUsers": ["user123"]
+  },
+  {
+    "id": "e2",
+    "title": "Startup Pitch Night",
+    "name": "Ayesha Rahman",
+    "date": "2025-06-30",
+    "time": "18:00",
+    "location": "BD Startup Hub",
+    "description": "Local startups pitch their ideas to VCs and mentors. Networking included.",
+    "attendeeCount": 7,
+    "joinedUsers": []
+  }
+]

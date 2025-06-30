@@ -1,14 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../Layouts/Root";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
-import FAQ from "../Pages/FAQ";
 import Home from "../Pages/Home/Home";
 import Blogs from "../Pages/Blogs/Blogs";
-import Projects from "../Pages/Services/Services.jsx";
-import ProjectDetails from "../Pages/Services/ProjectDetails.jsx";
 import About from "../Pages/About/About.jsx";
 import ContactMe from "../Pages/Contact/ContactMe.jsx";
 import Events from "../Pages/Events/Events.jsx";
+import EventDetails from "../Pages/Events/EventDetails.jsx";
+import Services from "../Pages/Services/Services.jsx";
 
 
 export const Router = createBrowserRouter([
@@ -34,10 +33,13 @@ export const Router = createBrowserRouter([
             {
                 path: '/events',
                 Component: Events,
+            }, {
+                path: '/events/:id',
+                Component: Events,
             },
             {
                 path: '/services',
-                Component: Projects,
+                Component: Services,
             },
             {
                 path: '/reviews',
@@ -45,7 +47,7 @@ export const Router = createBrowserRouter([
             },
             {
                 path: "/serviceDetails/:id",
-                Component: ProjectDetails,
+                Component: EventDetails,
             },
             {
                 path: "/contactUs",
