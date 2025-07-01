@@ -6,14 +6,14 @@ import HomeHighlights from './HomeComponents/HomeHighlights';
 const Home = () => {
 
     return (
-        <div className="max-w-7xl mx-auto">
+        <div className=" mx-auto">
 
             {/* <h1>home</h1> */}
-            <section className="bg-base-300 shadow-md px-2 md:px-4 lg:px-8 py-2">
+            <section className="bg-base-300 shadow-md px-2  md:px-4 lg:px-8 py-10">
                 <Banner></Banner>
             </section>
 
-            <section className="bg-base-300 shadow-md px-2 md:px-4 lg:px-8 py-2">
+            <section className="bg-base-300 shadow-md px-2 md:px-4 lg:px-8 pb-10">
                 <HomeHighlights></HomeHighlights>
             </section>
 

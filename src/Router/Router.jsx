@@ -8,6 +8,11 @@ import ContactMe from "../Pages/Contact/ContactMe.jsx";
 import Events from "../Pages/Events/Events.jsx";
 import EventDetails from "../Pages/Events/EventDetails.jsx";
 import Services from "../Pages/Services/Services.jsx";
+import SignIn from "../components/Shared/SignIn.jsx";
+import Register from "../components/Shared/Register.jsx";
+import AddEvent from "../Pages/AddEvent.jsx";
+import MyEvent from "../Pages/MyEvent.jsx";
+import AllEvents from "../Pages/AllEvents.jsx";
 
 
 export const Router = createBrowserRouter([
@@ -31,6 +36,14 @@ export const Router = createBrowserRouter([
                 Component: About,
             },
             {
+                path: '/signIn',
+                Component: SignIn,
+            },
+            {
+                path: '/register',
+                Component: Register,
+            },
+            {
                 path: '/events',
                 Component: Events,
             }, {
@@ -52,7 +65,19 @@ export const Router = createBrowserRouter([
             {
                 path: "/contactUs",
                 Component: ContactMe,
-            }
+            },
+            {
+                path: "/addEvent",
+                Component: AddEvent,
+            },
+            {
+                path: "/myEvent",
+                Component: MyEvent,
+            },
+            {
+                path: "/allEvents",
+                Component: AllEvents,
+            },
         ]
     }
 ])

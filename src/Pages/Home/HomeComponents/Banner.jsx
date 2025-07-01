@@ -2,25 +2,28 @@ import React from "react";
 import { Fade } from "react-awesome-reveal";
 import { FaCalendarCheck, FaPhoneAlt } from "react-icons/fa";
 import ServicesMarquee from "./ServicesMarquee";
+import { Link } from "react-router";
 
 const Banner = () => {
   return (
     <div className="bg-base-200 rounded-2xl">
-      <div className="relative z-10 w-full max-w-6xl p-6 md:p-10 text-neutral-content text-center">
+      <div className="relative z-10 w-full p-6 md:p-10 text-neutral-content text-center">
         <Fade direction="down" triggerOnce>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-[#DCA54D] bg-clip-text text-transparent">
             Welcome to EventCraft
           </h1>
-          <p className="text-lg md:text-xl mb-6">
+          <p className="text-lg md:text-xl text-gray-500 mb-6">
             Your trusted partner in crafting unforgettable events – from intimate gatherings to grand celebrations.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <button className="btn btn-primary text-white">
+            <button className="btn bg-black text-white">
               <FaCalendarCheck className="mr-2" /> Book an Event
             </button>
-            <button className="btn btn-outline btn-accent">
-              <FaPhoneAlt className="mr-2" /> Contact Us
-            </button>
+            <Link to='/contactUs'>
+              <button className="btn btn-outline bg-[#DCA54D]">
+                <FaPhoneAlt className="mr-2" /> Contact Us
+              </button>
+            </Link>
           </div>
         </Fade>
 

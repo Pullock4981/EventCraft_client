@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import {
   format,
@@ -15,13 +14,15 @@ import {
 import EventCard from './EventCard';
 
 const fetchEvents = async () => {
-  const res = await fetch('/events.json');
+  const res = await fetch('http://localhost:5000/api/events', {
+    credentials: 'include',
+  });
   if (!res.ok) throw new Error('Failed to fetch events');
   return res.json();
 };
 
 const Events = ({ currentUser }) => {
-  const { data: events = [], isLoading, isError } = useQuery({
+  const { data = [], isLoading, isError } = useQuery({
     queryKey: ['events'],
     queryFn: fetchEvents,
   });
@@ -30,85 +31,95 @@ const Events = ({ currentUser }) => {
   const [filter, setFilter] = useState('all');
   const [localEvents, setLocalEvents] = useState([]);
 
-  // Add local "joinedUsers" and "attendeeCount" logic
   useEffect(() => {
-    if (events.length) {
-      setLocalEvents(events.map(e => ({ ...e })));
+    if (data.length) {
+      const withDefaults = data.map((event) => ({
+        ...event,
+        attendeeCount: event.attendeeCount || 0,
+        joinedUsers: event.joinedUsers || [],
+      }));
+      setLocalEvents(withDefaults);
     }
-  }, [events]);
+  }, [data]);
+
+  const handleJoin = (id) => {
+    setLocalEvents((prev) =>
+      prev.map((event) =>
+        event._id === id && !event.joinedUsers.includes(currentUser?.email)
+          ? {
+            ...event,
+            attendeeCount: event.attendeeCount + 1,
+            joinedUsers: [...event.joinedUsers, currentUser.email],
+          }
+          : event
+      )
+    );
+  };
 
   const filterAndSearchEvents = () => {
+    const today = new Date();
     let filtered = [...localEvents];
 
-    // Filter
-    const today = new Date();
-    if (filter === 'today') {
-      filtered = filtered.filter(e => isToday(new Date(e.date)));
-    } else if (filter === 'thisWeek') {
-      filtered = filtered.filter(e =>
-        isWithinInterval(new Date(e.date), {
-          start: startOfWeek(today),
-          end: endOfWeek(today),
-        })
-      );
-    } else if (filter === 'lastWeek') {
-      const lastWeekStart = startOfWeek(subWeeks(today, 1));
-      const lastWeekEnd = endOfWeek(subWeeks(today, 1));
-      filtered = filtered.filter(e =>
-        isWithinInterval(new Date(e.date), {
-          start: lastWeekStart,
-          end: lastWeekEnd,
-        })
-      );
-    } else if (filter === 'thisMonth') {
-      filtered = filtered.filter(e =>
-        isWithinInterval(new Date(e.date), {
-          start: startOfMonth(today),
-          end: endOfMonth(today),
-        })
-      );
-    } else if (filter === 'lastMonth') {
-      const lastMonth = subMonths(today, 1);
-      filtered = filtered.filter(e =>
-        isWithinInterval(new Date(e.date), {
-          start: startOfMonth(lastMonth),
-          end: endOfMonth(lastMonth),
-        })
-      );
+    switch (filter) {
+      case 'today':
+        filtered = filtered.filter((e) => isToday(new Date(e.date)));
+        break;
+      case 'thisWeek':
+        filtered = filtered.filter((e) =>
+          isWithinInterval(new Date(e.date), {
+            start: startOfWeek(today),
+            end: endOfWeek(today),
+          })
+        );
+        break;
+      case 'lastWeek':
+        const lastWeekStart = startOfWeek(subWeeks(today, 1));
+        const lastWeekEnd = endOfWeek(subWeeks(today, 1));
+        filtered = filtered.filter((e) =>
+          isWithinInterval(new Date(e.date), {
+            start: lastWeekStart,
+            end: lastWeekEnd,
+          })
+        );
+        break;
+      case 'thisMonth':
+        filtered = filtered.filter((e) =>
+          isWithinInterval(new Date(e.date), {
+            start: startOfMonth(today),
+            end: endOfMonth(today),
+          })
+        );
+        break;
+      case 'lastMonth':
+        const lastMonth = subMonths(today, 1);
+        filtered = filtered.filter((e) =>
+          isWithinInterval(new Date(e.date), {
+            start: startOfMonth(lastMonth),
+            end: endOfMonth(lastMonth),
+          })
+        );
+        break;
+      default:
+        break;
     }
 
-    // Search
     if (searchTerm) {
-      filtered = filtered.filter(e =>
+      filtered = filtered.filter((e) =>
         e.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     return filtered.sort((a, b) => {
-      if (a.date !== b.date) return new Date(b.date) - new Date(a.date);
+      const dateDiff = new Date(b.date) - new Date(a.date);
+      if (dateDiff !== 0) return dateDiff;
       return b.time.localeCompare(a.time);
     });
   };
 
-  const handleJoin = (id) => {
-    setLocalEvents(prev =>
-      prev.map(e => {
-        if (e.id === id && !e.joinedUsers.includes(currentUser.email)) {
-          return {
-            ...e,
-            attendeeCount: e.attendeeCount + 1,
-            joinedUsers: [...e.joinedUsers, currentUser.email],
-          };
-        }
-        return e;
-      })
-    );
-  };
-
-  if (isLoading) return <div className="text-center py-10">Loading events...</div>;
-  if (isError) return <div className="text-center text-red-500">Failed to load events.</div>;
-
   const displayedEvents = filterAndSearchEvents();
+
+  if (isLoading) return <p className="text-center py-10">Loading events...</p>;
+  if (isError) return <p className="text-center text-red-500">Failed to load events.</p>;
 
   return (
     <section className="max-w-6xl mx-auto p-4">
@@ -116,6 +127,9 @@ const Events = ({ currentUser }) => {
 
       {/* Search & Filter */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+        <p>
+          Search here:
+        </p>
         <input
           type="text"
           placeholder="Search by title"
@@ -123,6 +137,9 @@ const Events = ({ currentUser }) => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <p>
+          Sort here:
+        </p>
         <select
           className="select select-bordered"
           value={filter}
@@ -139,43 +156,18 @@ const Events = ({ currentUser }) => {
 
       {/* Event Cards */}
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
-        {displayedEvents.map((event, i) => (
-
-
-          <EventCard
-            key={i}
-            event={event}
-          ></EventCard>
-
-          // <motion.div
-          //   key={e.id}
-          //   className="bg-base-200 p-6 rounded-xl shadow hover:shadow-xl"
-          //   initial={{ opacity: 0, y: 30 }}
-          //   animate={{ opacity: 1, y: 0 }}
-          //   transition={{ delay: i * 0.05 }}
-          // >
-          //   <h2 className="text-xl font-bold mb-2 text-primary">{e.title}</h2>
-          //   <p className="text-sm text-base-content/80 mb-1"><strong>Posted by:</strong> {e.name}</p>
-          //   <p className="text-sm mb-1"><strong>Date:</strong> {format(new Date(e.date), 'PPP')} at {e.time}</p>
-          //   <p className="text-sm mb-1"><strong>Location:</strong> {e.location}</p>
-          //   <p className="text-sm mb-3">{e.description}</p>
-          //   <p className="text-sm mb-2"><strong>Attendees:</strong>
-
-
-          //    {e.attendeeCount}</p>
-          //   <button
-          //     className="btn btn-primary btn-sm"
-          //     disabled={e.joinedUsers.includes(currentUser.email)}
-          //     onClick={() => handleJoin(e.id)}
-          //   >
-          //     {e.joinedUsers.includes(currentUser.email) ? "Joined" : "Join Event"}
-          //   </button>
-          // </motion.div>
-
-
-        ))}
-
-
+        {displayedEvents.length ? (
+          displayedEvents.map((event) => (
+            <EventCard
+              key={event._id}
+              event={event}
+              currentUser={currentUser}
+              onJoin={handleJoin}
+            />
+          ))
+        ) : (
+          <p className="text-center col-span-full">No events found.</p>
+        )}
       </div>
     </section>
   );

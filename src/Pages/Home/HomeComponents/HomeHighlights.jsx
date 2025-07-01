@@ -74,9 +74,9 @@ const HomeHighlights = () => {
           transition={{ duration: 0.5 }}
           className="mt-12 text-center"
         >
-          <Link to="/services" className="btn btn-primary px-8 rounded-full mt-4">
+          {/* <Link to="/services" className="btn btn-primary px-8 rounded-full mt-4">
             Explore All Services
-          </Link>
+          </Link> */}
         </motion.div>
       </div>
     </section>
