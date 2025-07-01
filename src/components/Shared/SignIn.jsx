@@ -14,7 +14,7 @@ const SignIn = () => {
         const password = form.password.value;
 
         try {
-            const res = await fetch('http://localhost:5000/api/auth/login', {
+            const res = await fetch('https://event-server-two-fawn.vercel.app/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',

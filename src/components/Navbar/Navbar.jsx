@@ -5,6 +5,7 @@ import { useAuth } from "../../AuthContext/useAuth";
 import { Link, NavLink } from "react-router";
 import Logo from "../Shared/Logo";
 import ThemeToggle from "../Theme/ThemeToggle";
+import PrivateRout from "../../Provider/PrivateRout";
 
 export default function Navbar() {
     const { user, logout } = useAuth();
@@ -23,14 +24,18 @@ export default function Navbar() {
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/addEvent" className={({ isActive }) => isActive ? 'font-bold text-primary' : ''}>
-                    Add Event
-                </NavLink>
+                <PrivateRout>
+                    <NavLink to="/addEvent" className={({ isActive }) => isActive ? 'font-bold text-primary' : ''}>
+                        Add Event
+                    </NavLink>
+                </PrivateRout>
             </li>
             <li>
-                <NavLink to="/myEvent" className={({ isActive }) => isActive ? 'font-bold text-primary' : ''}>
-                    My Event
-                </NavLink>
+                <PrivateRout>
+                    <NavLink to="/myEvent" className={({ isActive }) => isActive ? 'font-bold text-primary' : ''}>
+                        My Event
+                    </NavLink>
+                </PrivateRout>
             </li>
         </>
     );

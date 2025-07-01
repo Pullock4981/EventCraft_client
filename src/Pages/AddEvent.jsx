@@ -27,7 +27,7 @@
 //         };
 
 //         try {
-//             const res = await axios.post('http://localhost:5000/api/events', payload, {
+//             const res = await axios.post('https://event-server-two-fawn.vercel.app/api/events', payload, {
 //                 withCredentials: true, // include cookies for auth
 //             });
 //             setMessage('Event added successfully!');
@@ -141,7 +141,7 @@ const AddEvent = ({ currentUser }) => {
         };
 
         try {
-            await axios.post('http://localhost:5000/api/events', payload, {
+            await axios.post('https://event-server-two-fawn.vercel.app/api/events', payload, {
                 withCredentials: true,
             });
 

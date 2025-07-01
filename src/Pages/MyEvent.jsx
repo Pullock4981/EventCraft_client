@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
 import Modal from './UpdateModal'; // assumed you have a modal or will create it
 
 const fetchUserEvents = async () => {
-    const res = await fetch('http://localhost:5000/api/events', {
+    const res = await fetch('https://event-server-two-fawn.vercel.app/api/events', {
         credentials: 'include',
     });
     if (!res.ok) throw new Error('Failed to fetch events');
@@ -41,7 +41,7 @@ const MyEvent = ({ currentUser }) => {
 
     const deleteMutation = useMutation({
         mutationFn: async (id) => {
-            const res = await fetch(`http://localhost:5000/api/events/${id}`, {
+            const res = await fetch(`https://event-server-two-fawn.vercel.app/api/events/${id}`, {
                 method: 'DELETE',
                 credentials: 'include',
             });

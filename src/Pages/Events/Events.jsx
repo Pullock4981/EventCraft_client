@@ -14,7 +14,7 @@ import {
 import EventCard from './EventCard';
 
 const fetchEvents = async () => {
-  const res = await fetch('http://localhost:5000/api/events', {
+  const res = await fetch('https://event-server-two-fawn.vercel.app/api/events', {
     credentials: 'include',
   });
   if (!res.ok) throw new Error('Failed to fetch events');
